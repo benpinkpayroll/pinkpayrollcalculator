@@ -1,13 +1,4 @@
-<html>
-    <head>
-
-        <!-- The font is served from google fonts so ensure to add it as well (unless its already added on the website) -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap" rel="stylesheet">
-        
-    </head>
-    <body>
+ <body>
 
         <!-- The following section contains the calculator -->
         <section class="salary-calculator">
