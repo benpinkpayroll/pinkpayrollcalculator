@@ -1,0 +1,1238 @@
+<html>
+    <head>
+
+        <!-- The font is served from google fonts so ensure to add it as well (unless its already added on the website) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+
+        <!-- The following section contains the calculator -->
+        <section class="salary-calculator">
+            <p class="salary-calculator__tag">2024-25 tax year</p>
+            <h3 class="salary-calculator__title">Salary & Pensions Calculator</h3>
+
+            <form id="salary-calculator-form" class="salary-calculator__grid">
+
+                <div class="salary-calculator__grid-col">
+                    <label class="salary-calculator__grid-label">Pay frequency</label>
+                    <select required name="pay_frequency">
+                        <option value="" disabled selected>Please select</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="annually">Annually</option>
+                    </select>
+                </div>
+
+                <div class="salary-calculator__grid-col">
+                    <label class="salary-calculator__grid-label">Salary (to nearest £)</label>
+                    <div class="salary-calculator__salary-field-wrap">
+                        <div class="salary-calculator__salary-field">
+                            <span class="salary-calculator__salary-field-pound">£</span>
+                            <input name="income" type="number" placeholder="0">
+                        </div>
+                        <div class="salary-calculator__salary-switcher">
+                            <div class="salary-calculator__salary-switcher-item">
+                                <input type="radio" name="salary_type" id="salary_type_gross" value="gross" checked>
+                                <label for="salary_type_gross">Gross</label>
+                            </div>
+                            <div class="salary-calculator__salary-switcher-item">
+                                <input type="radio" name="salary_type" id="salary_type_net" value="net">
+                                <label for="salary_type_net">Net</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="salary-calculator__grid-col salary-calculator__grid-col--full">
+                    <div class="salary-calculator__salary-switcher salary-calculator__salary-switcher--column-mob">
+                        <div class="salary-calculator__salary-switcher-item">
+                            <input type="radio" name="tax_code_switcher" id="tax_code_existing" value="yes" checked>
+                            <label for="tax_code_existing">I know my tax code</label>
+                        </div>
+                        <div class="salary-calculator__salary-switcher-item">
+                            <input type="radio" name="tax_code_switcher" id="tax_code_missing" value="no">
+                            <label for="tax_code_missing">I don't know my tax code</label>
+                        </div>
+                    </div>
+                    <div class="salary-calculator__tax-field-wrap">
+                        <select name="tax_code_select" style="display: none; margin-bottom: 10px;">
+                            <option value="1257l">Apply the standard tax code</option>
+                            <option value="1257l">My employee will only be employed by me</option>
+                            <option value="1257l">My employee already has another job, but I will be the main employer for tax purpose</option>
+                            <option value="br">My employee already has another job, but I will be the second employer for tax purpose</option>
+                            <option value="628l">My employee already has another job, but we expect to split the tax-free allowance (tax code) with the other employee</option>
+                        </select>
+                        <input type="text" name="tax_code" placeholder="Enter tax code">
+                    </div>
+                </div>
+
+
+                <div class="salary-calculator__grid-col">
+                    <label class="salary-calculator__grid-label">Include Autoenrolment Pension Contributions?</label>
+                    <br>
+                    <div class="salary-calculator__salary-switcher">
+                        <div class="salary-calculator__salary-switcher-item">
+                            <input type="radio" name="include_pension" id="include_pension_yes" value="yes" checked>
+                            <label for="include_pension_yes">Yes</label>
+                        </div>
+                        <div class="salary-calculator__salary-switcher-item">
+                            <input type="radio" name="include_pension" id="include_pension_no" value="no">
+                            <label for="include_pension_no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="salary-calculator__grid-col">
+                    <label class="salary-calculator__grid-label">Include Student Loan Deductions?</label>
+                    <br>
+                    <div class="salary-calculator__salary-switcher">
+                        <div class="salary-calculator__salary-switcher-item">
+                            <input type="radio" name="include_student_loan" id="include_student_loan_yes" value="yes">
+                            <label for="include_student_loan_yes">Yes</label>
+                        </div>
+                        <div class="salary-calculator__salary-switcher-item">
+                            <input type="radio" name="include_student_loan" id="include_student_loan_no" value="no" checked>
+                            <label for="include_student_loan_no">No</label>
+                        </div>
+                    </div>
+                    <div class="salary-calculator__salary-switcher" style="margin-top: 15px; display: none;" id="student-loan-plans">
+                        <div class="salary-calculator__salary-switcher-item" style="margin-bottom: 10px;">
+                            <input class="input-checkbox" type="radio" name="student_loan_type" id="student_loan_type_1" value="plan_1" checked>
+                            <label for="student_loan_type_1">Student Loan Type 1</label>
+                            <div class="salary-calculator__tip">
+                                i
+                                <div class="salary-calculator__tip-message">
+                                    You're on a Plan 2 repayment plan if you're an English or Welsh student who started an undergraduate course anywhere in the UK on or after 1 September 2012, if you're an EU student who started an undergraduate course in England or Wales on or after 1 September 2012 or you are someone who took out an Advanced Learner Loan on or after 1 August 2013.
+                                    <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="salary-calculator__salary-switcher-item" style="margin-bottom: 10px;">
+                            <input class="input-checkbox" type="radio" name="student_loan_type" id="student_loan_type_2" value="plan_2">
+                            <label for="student_loan_type_2">Student Loan Type 2</label>
+                            <div class="salary-calculator__tip">
+                                i
+                                <div class="salary-calculator__tip-message">
+                                    You're on a Plan 2 repayment plan if you're an English or Welsh student who started an undergraduate course anywhere in the UK on or after 1 September 2012, if you're an EU student who started an undergraduate course in England or Wales on or after 1 September 2012 or you are someone who took out an Advanced Learner Loan on or after 1 August 2013.
+                                    <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="salary-calculator__salary-switcher-item" style="margin-bottom: 10px;">
+                            <input class="input-checkbox" type="radio" name="student_loan_type" id="student_loan_type_4" value="plan_4">
+                            <label for="student_loan_type_4">Student Loan Type 4</label>
+                            <div class="salary-calculator__tip">
+                                i
+                                <div class="salary-calculator__tip-message">
+                                    You're on a Plan 2 repayment plan if you're an English or Welsh student who started an undergraduate course anywhere in the UK on or after 1 September 2012, if you're an EU student who started an undergraduate course in England or Wales on or after 1 September 2012 or you are someone who took out an Advanced Learner Loan on or after 1 August 2013.
+                                    <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="salary-calculator__salary-switcher-item" style="margin-bottom: 10px;">
+                            <input class="input-checkbox" type="radio" name="student_loan_type" id="student_loan_type_5" value="plan_5">
+                            <label for="student_loan_type_5">Student Loan Type 5</label>
+                            <div class="salary-calculator__tip">
+                                i
+                                <div class="salary-calculator__tip-message">
+                                    You're on a Plan 2 repayment plan if you're an English or Welsh student who started an undergraduate course anywhere in the UK on or after 1 September 2012, if you're an EU student who started an undergraduate course in England or Wales on or after 1 September 2012 or you are someone who took out an Advanced Learner Loan on or after 1 August 2013.
+                                    <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="salary-calculator__salary-switcher-item">
+                            <input class="input-checkbox" type="radio" name="student_loan_type" id="student_loan_type_postgrad" value="postgrad">
+                            <label for="student_loan_type_postgrad">Postgraduate loan</label>
+                            <div class="salary-calculator__tip">
+                                i
+                                <div class="salary-calculator__tip-message">
+                                    You're on a Plan 2 repayment plan if you're an English or Welsh student who started an undergraduate course anywhere in the UK on or after 1 September 2012, if you're an EU student who started an undergraduate course in England or Wales on or after 1 September 2012 or you are someone who took out an Advanced Learner Loan on or after 1 August 2013.
+                                    <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="salary-calculator__grid-col salary-calculator__grid-col--full">
+                    <button id="submit-salary-form" class="btn" disabled>
+                        Get my results
+                        <svg viewBox="0 0 320 512" width="10" style="margin-left: 15px;" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="m278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l137.4-137.4-137.3-137.4c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+                    </button>
+                </div>
+
+                <div class="salary-calculator__grid-col salary-calculator__grid-col--full">
+                    <p class="text-grey">**Please note, these calculations are for guidance only and should not be used to pay your employee**</p>
+                </div>
+
+            </form>
+
+
+            <div id="salary-calculator-results" style="margin-top: 50px; display: none;">
+                <p>Based on a gross salary of <span id="submitted-gross-salary"></span> per annum, on the tax code <span id="submitted-tax-code"></span>, with no student loan and with no pension income, you can expect the following figures...</p>
+
+                <h4 class="salary-calculator__table-heading">Employer Breakdown</h4>
+                <table class="salary-calculator__table">
+                    <thead>
+                        <th></th>
+                        <th>Per Week</th>
+                        <th>Per Month</th>
+                        <th>Per Year</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="table-head-mob">Gross Pay</td>
+                            <td><p id="results-weekly-pay-employer"></p></td>
+                            <td><p id="results-monthly-pay-employer"></p></td>
+                            <td><p id="results-annually-pay-employer"></p></td>
+                            <td>
+                                <div class="salary-calculator__tip">
+                                    i
+                                    <div class="salary-calculator__tip-message salary-calculator__tip-message--mob-right">
+                                        This is what the Employee earns before any deductions are made.
+                                        <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-head-mob">+ Employer NI</td>
+                            <td><p id="results-weekly-nic-employer"></p></td>
+                            <td><p id="results-monthly-nic-employer"></p></td>
+                            <td><p id="results-annually-nic-employer"></p></td>
+                            <td>
+                                <div class="salary-calculator__tip">
+                                    i
+                                    <div class="salary-calculator__tip-message salary-calculator__tip-message--mob-right">
+                                        This is the Employer National Insurance Contribution you will pay based on the salary entered.
+                                        <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="results-pension-row-employer">
+                            <td class="table-head-mob">+ Employer Pension</td>
+                            <td><p id="results-weekly-pension-employer"></p></td>
+                            <td><p id="results-monthly-pension-employer"></p></td>
+                            <td><p id="results-annually-pension-employer"></p></td>
+                            <td>
+                                <div class="salary-calculator__tip">
+                                    i
+                                    <div class="salary-calculator__tip-message salary-calculator__tip-message--mob-right">
+                                        This figure shows the minimum employer contribution calculated on qualifying earnings which is 3%.
+                                        <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="table-head-mob">Employer Total Cost</td>
+                            <td><p id="results-weekly-total-employer"></p></td>
+                            <td><p id="results-monthly-total-employer"></p></td>
+                            <td><p id="results-annually-total-employer"></p></td>
+                            <td>
+                                <div class="salary-calculator__tip">
+                                    i
+                                    <div class="salary-calculator__tip-message salary-calculator__tip-message--mob-right">
+                                        This is Gross Pay + Employer National Insurance Contribution + Employer Pension Contribution. Total Cost applies only to the employer and should not be used in Contracts of Employment.
+                                        <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <h4 class="salary-calculator__table-heading">Employee Breakdown</h4>
+                <table class="salary-calculator__table">
+                    <thead>
+                        <th></th>
+                        <th>Per Week</th>
+                        <th>Per Month</th>
+                        <th>Per Year</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="table-head-mob">Gross Pay</td>
+                            <td><p id="results-weekly-pay"></p></td>
+                            <td><p id="results-monthly-pay"></p></td>
+                            <td><p id="results-annually-pay"></p></td>
+                            <td>
+                                <div class="salary-calculator__tip">
+                                    i
+                                    <div class="salary-calculator__tip-message salary-calculator__tip-message--mob-right">
+                                        This is what the Employee earns before any deductions are made.
+                                        <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-head-mob">- Income tax (PAYE)</td>
+                            <td><p id="results-weekly-tax"></p></td>
+                            <td><p id="results-monthly-tax"></p></td>
+                            <td><p id="results-annually-tax"></p></td>
+                            <td>
+                                <div class="salary-calculator__tip">
+                                    i
+                                    <div class="salary-calculator__tip-message salary-calculator__tip-message--mob-right">
+                                        This is the Income Tax (PAYE) Contribution your Employee will pay based on the salary entered.
+                                        <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-head-mob">- Employee NI</td>
+                            <td><p id="results-weekly-nic"></p></td>
+                            <td><p id="results-monthly-nic"></p></td>
+                            <td><p id="results-annually-nic"></p></td>
+                            <td>
+                                <div class="salary-calculator__tip">
+                                    i
+                                    <div class="salary-calculator__tip-message salary-calculator__tip-message--mob-right">
+                                        Employee National Insurance Contribution your Employee will pay based on the salary entered.
+                                        <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="results-pension-row">
+                            <td class="table-head-mob">- Employee Pension</td>
+                            <td><p id="results-weekly-pension"></p></td>
+                            <td><p id="results-monthly-pension"></p></td>
+                            <td><p id="results-annually-pension"></p></td>
+                            <td>
+                                <div class="salary-calculator__tip">
+                                    i
+                                    <div class="salary-calculator__tip-message salary-calculator__tip-message--mob-right">
+                                        This figure shows the minimum contribution calculated on qualifying earnings which is 4%, with 1% tax relief added by the government.
+                                        <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="results-studentloan-row">
+                            <td class="table-head-mob">- Student Loan</td>
+                            <td><p id="results-weekly-studentloan"></p></td>
+                            <td><p id="results-monthly-studentloan"></p></td>
+                            <td><p id="results-annually-studentloan"></p></td>
+                            <td>
+                                <div class="salary-calculator__tip">
+                                    i
+                                    <div class="salary-calculator__tip-message salary-calculator__tip-message--mob-right">
+                                        This is based on the student loan type(s) you selected.
+                                        <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-head-mob">Employee Net Pay</td>
+                            <td><p id="results-weekly-net"></p></td>
+                            <td><p id="results-monthly-net"></p></td>
+                            <td><p id="results-annually-net"></p></td>
+                            <td>
+                                <div class="salary-calculator__tip">
+                                    i
+                                    <div class="salary-calculator__tip-message salary-calculator__tip-message--mob-right">
+                                        Also known as take-home pay. It is what the Employee is left with after all deductions have been made. These calculations assume Income Tax (PAYE), Employee National Insurance Contribution and Employee Pension Contribution only. Other deductions such as Student Loan repayments and Attachment of Earnings may be deducted from the Gross Pay.
+                                        <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L0 0H8L4 4Z" fill="white"/></svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <br>
+                <br>
+                <div class="salary-calculator__grid">
+
+                    <div class="salary-calculator__grid-col">
+                        <a href="" class="btn" id="adjust-calculation">
+                            Adjust this calculation
+                            <svg viewBox="0 0 320 512" width="10" style="margin-left: 15px;" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="m278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l137.4-137.4-137.3-137.4c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+                        </a>
+                    </div>
+    
+                    <div class="salary-calculator__grid-col">
+                        <a href="" class="btn btn--purple">
+                            Start new calculation
+                            <svg viewBox="0 0 320 512" width="10" style="margin-left: 15px;" xmlns="http://www.w3.org/2000/svg"><path fill="#B171EE" d="m278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l137.4-137.4-137.3-137.4c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+                        </a>
+                    </div>
+
+                </div>
+
+                
+                <div class="salary-calculator__footer">
+                    <h5>The calculations explained</h5>
+                    <ul>
+                        <li>These calculations are based on the tax year 2024/2025</li>
+                        <li>These calculation are approximate and for guidelines only</li>
+                        <li>The pension calculations are based on the current minimum legal contributions</li>
+                        <li>For a full list of the 2024-2025 tax rates and thresholds please <a target="_blank" style="color: var(--salary-pink); text-decoration: underline" href="https://www.gov.uk/guidance/rates-and-thresholds-for-employers-2024-to-2025">click here</a></li>
+                        <li>We assume no responsibility for how these calculations are used thereafter</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+    </body>
+</html> 
+
+<style>
+    
+    body {
+        background-color: #FFD2FE;
+        padding: 100px;
+    }
+
+    /* The below styles need adding  */
+    .salary-calculator {
+        --salary-white:#fff;
+        --salary-pink-light: #FAF5FF;
+        --salary-pink:#FF008E;
+        --salary-black:#2C2C2C;
+        --salary-purple:#B171EE;
+        --salary-purple-light:#F2E8FC;
+        --salary-grey-light: #E1E1E1;
+        --salary-grey: #8F8F8F;
+
+        box-sizing: border-box;
+        max-width: 1200px;
+        margin: 0 auto;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        padding: 80px;
+        background: #fff;
+
+        .salary-calculator__tag {
+            background-color:  var(--salary-purple-light);
+            color:  var(--salary-purple);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 5px 14px;
+            margin: 0;
+            display: inline-block;
+            border-radius: 15px;
+
+        }
+
+        .salary-calculator__title {
+            font-size: 58px;
+            margin: 20px 0 40px 0;
+            font-weight: 600;
+        }
+
+        .salary-calculator__grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+
+        }
+
+        .salary-calculator__grid-col:is(.salary-calculator__grid-col--full) {
+            width: 100%;
+        }
+
+        .salary-calculator__grid-col:not(.salary-calculator__grid-col--full) {
+            width: calc(50% - 20px);
+        }
+        
+
+        .salary-calculator__grid-label {
+            color:  var(--salary-pink);
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0 0 10px 0;
+            display: block;
+            line-height: 1;
+        }
+
+        select, input[type="text"], input[type="number"] {
+            border: 1px solid var(--salary-grey-light);
+            border-radius: 50px;
+            padding: 21px 24px;
+            line-height: 1;
+            font-size: 16px;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+
+            &.disabled {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+
+            &:focus {
+                border-color: var(--salary-pink);
+                outline: none;
+            }
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 24px center;
+            background-size: 20px;
+
+            &:invalid {
+                color: var(--salary-grey);
+            }
+        }
+
+        input[type='radio'], input[type='checkbox'] {
+            width: 24px;
+            min-width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--salary-grey-light);
+            appearance: none;
+            margin: 0 12px 0 0;
+            vertical-align: middle;
+
+            &:checked {
+                appearance: auto;
+                accent-color: var(--salary-pink);
+            }
+        }
+
+        .input-checkbox {
+            border-radius: 5px !important;
+            appearance: none !important;
+            &:checked {
+                border-color: var(--salary-pink);
+                background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M9 16.17L5.83 13l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17' fill='%23FF008E' /%3E%3C/svg%3E") center/contain no-repeat;
+            }
+        }
+
+        .btn {
+            background-color: var(--salary-pink);
+            color: var(--salary-white);
+            padding: 20px 25px;
+            border-radius: 50px;
+            border: 0;
+            line-height: 1;
+            font-size: 16px;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            text-decoration: none;
+
+            svg path {
+                transition: all 0.2s ease;
+            }
+
+            &.btn--purple {
+                background-color: var(--salary-purple-light);
+                color: var(--salary-purple);
+                
+                &:hover {
+                    color: var(--salary-white);
+
+                    svg path {
+                        fill: var(--salary-white);
+                    }
+                }
+            }
+
+            &:disabled {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+
+            &:hover {
+                background-color: var(--salary-black);
+            }
+        }
+
+        .salary-calculator__salary-field-wrap {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+        }
+
+        .salary-calculator__salary-field-pound {
+            position: absolute;
+            top: 0;
+            left: 20px;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .salary-calculator__salary-field {
+            width: 60%;
+            position: relative;
+        }
+
+        .salary-calculator__salary-field input {
+            padding-left: 45px;
+        }
+
+        .salary-calculator__salary-switcher {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .salary-calculator__salary-switcher-item {
+            display: flex;
+            align-items: center;
+            margin-right: 25px;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+
+        .salary-calculator__tax-field-wrap {
+            margin: 20px 0 0 0;
+        }
+
+        .text-grey {
+            color: var(--salary-grey);
+        }
+
+        .salary-calculator__tip {
+            border: 2px solid var(--salary-pink);
+            color: var(--salary-pink);
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            position: relative;
+            margin-left: 10px;
+            font-size: 14px;
+
+            &:hover {
+                .salary-calculator__tip-message {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+
+        .salary-calculator__tip-message {
+            position: absolute;
+            bottom: 100%;
+            border-radius: 8px;
+            background-color: var(--salary-white);
+            padding: 8px 12px;
+            font-size: 12px;
+            width: 360px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0px 4px 20px 0px rgba(44, 44, 44, 0.20);
+            color: var(--salary-black);
+            margin-bottom: 12px;
+            line-height: 1.5;
+            opacity: 0;
+            transition: all 0.3s ease;
+            visibility: hidden;
+            white-space: normal;
+        }
+
+        .salary-calculator__tip-message svg {
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .salary-calculator__table-heading {
+            font-size: 24px;
+        }
+
+        .salary-calculator__table {
+            width: 100%;
+            border-collapse: collapse;
+
+            tr {
+                &.is-disabled {
+                    opacity: 0.5;
+                    pointer-events: none;
+                }
+            }
+
+            th, td {
+                text-align: left;
+                padding: 10px;
+            }
+
+            th {
+                font-weight: 600;
+                white-space: nowrap;
+            }
+
+            td {
+                font-weight: 500;
+                white-space: nowrap;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            tr {
+                &:first-of-type {
+                    td {
+                        background: var(--salary-pink-light);
+                    }
+                }
+
+                &:last-of-type {
+                    td {
+                        background: var(--salary-purple-light);
+                    }
+                }
+            }
+        }
+
+        .salary-calculator__footer {
+            margin: 40px 0 0 0;
+
+            h5 {
+                font-size: 16px;
+                margin: 0;
+            }
+
+            ul li {
+                font-size: 16px;
+                color: var(--salary-grey);
+            }
+        }
+    }
+    
+    
+    @media (max-width: 768px) {
+
+        body {
+            padding: 30px 20px;
+        }
+        .salary-calculator {
+            padding: 24px 20px;
+
+            .salary-calculator__title {
+                font-size: 34px;
+            }
+
+            .salary-calculator__grid {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .salary-calculator__grid-col:not(.salary-calculator__grid-col--full) {
+                width: 100%;                
+            }
+
+            .salary-calculator__salary-field-wrap {
+                display: block;
+            }
+
+            .salary-calculator__salary-field {
+                width: 100%;
+                margin: 0 0 10px 0;
+            }
+
+            .salary-calculator__salary-switcher--column-mob {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: start;
+                gap: 10px;
+            }
+
+            .salary-calculator__tip-message--mob-right {
+                left: unset;
+                transform: translateX(0);
+                right: 0;
+            }
+
+            .salary-calculator__tip-message--mob-right svg {
+                left: unset;
+                transform: translateX(0);
+                right: 8px;
+            }
+
+            .salary-calculator__table {
+                display: block;
+
+                thead {
+                    display: none;
+                }
+
+                tr {
+                    display: flex;
+                    flex-wrap: wrap;
+                    position: relative;
+                    margin-bottom: 20px;
+
+                    &:first-of-type {
+                        td {
+                            background-color: transparent;
+                        }
+                    }
+
+                    &:last-of-type {
+                        td {
+                            background-color: transparent;
+                        }
+                    }
+                }
+
+                td {
+                    width: 100%;
+                    display: block;
+                    background-color: transparent;
+
+                    
+                    &:last-of-type {
+                        background-color: transparent;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: auto;
+                    }
+
+                    &.table-head-mob {
+                        background-color: var(--salary-pink-light) !important;
+                    }
+                }
+
+                p {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                p[id^="results-weekly-"]:before {
+                    content: 'Per week';
+                    display: inline-block;
+                    vertical-align: top;
+                }
+                p[id^="results-monthly-"]:before {
+                    content: 'Per month';
+                    display: inline-block;
+                    vertical-align: top;
+                }
+                p[id^="results-annually-"]:before {
+                    content: 'Per year';
+                    display: inline-block;
+                    vertical-align: top;
+                }
+            }
+        }
+    }
+
+</style>
+
+<!-- The below scripts also need adding -->
+<script>
+const salaryForm = document.getElementById('salary-calculator-form')
+const frequencyInput = document.querySelector('select[name="pay_frequency"]')
+const incomeInput = document.querySelector('input[name="income"]')
+const taxCodeRadios = document.querySelectorAll('input[name="tax_code_switcher"]')
+const taxCodeInput = document.querySelector('input[name="tax_code"]')
+const taxCodeSelect = document.querySelector('select[name="tax_code_select"]')
+const studentLoanRadios = document.querySelectorAll('input[name="include_student_loan"]')
+const studentLoanPlans = document.getElementById('student-loan-plans')
+const submitButton = document.getElementById('submit-salary-form')
+const resetButton = document.getElementById('adjust-calculation')
+const resultsSection = document.getElementById('salary-calculator-results')
+
+resetButton.addEventListener('click', (event) => {
+    event.preventDefault()
+    salaryForm.style.display = 'flex'
+    resultsSection.style.display = 'none'
+})
+
+salaryForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    let data = calculateTakeHomeSalary()
+    insertValuesIntoResults(data)
+    salaryForm.style.display = 'none'
+    resultsSection.style.display = 'block'
+})
+
+function insertValuesIntoResults(data) {
+
+    document.getElementById('submitted-gross-salary').innerHTML = '£' + data.pay.annually
+    document.getElementById('submitted-tax-code').innerHTML = data.taxCode
+
+    document.getElementById('results-weekly-pay').innerHTML = '£' + data.pay.weekly
+    document.getElementById('results-monthly-pay').innerHTML = '£' + data.pay.monthly
+    document.getElementById('results-annually-pay').innerHTML = '£' + data.pay.annually
+
+    document.getElementById('results-weekly-net').innerHTML = '£' + data.net.weekly
+    document.getElementById('results-monthly-net').innerHTML = '£' + data.net.monthly
+    document.getElementById('results-annually-net').innerHTML = '£' + data.net.annually
+
+    document.getElementById('results-weekly-tax').innerHTML = '£' + data.tax.weekly
+    document.getElementById('results-monthly-tax').innerHTML = '£' + data.tax.monthly
+    document.getElementById('results-annually-tax').innerHTML = '£' + data.tax.annually
+
+    document.getElementById('results-weekly-nic').innerHTML = '£' + data.nic.weekly
+    document.getElementById('results-monthly-nic').innerHTML = '£' + data.nic.monthly
+    document.getElementById('results-annually-nic').innerHTML = '£' + data.nic.annually
+
+    document.getElementById('results-weekly-pension').innerHTML = '£' + data.pension.weekly
+    document.getElementById('results-monthly-pension').innerHTML = '£' + data.pension.monthly
+    document.getElementById('results-annually-pension').innerHTML = '£' + data.pension.annually
+
+    document.getElementById('results-weekly-studentloan').innerHTML = '£' + data.studentloan.weekly
+    document.getElementById('results-monthly-studentloan').innerHTML = '£' + data.studentloan.monthly
+    document.getElementById('results-annually-studentloan').innerHTML = '£' + data.studentloan.annually
+
+    // Employer
+    document.getElementById('results-weekly-pay-employer').innerHTML = '£' + data.pay.weekly
+    document.getElementById('results-monthly-pay-employer').innerHTML = '£' + data.pay.monthly
+    document.getElementById('results-annually-pay-employer').innerHTML = '£' + data.pay.annually
+
+    document.getElementById('results-weekly-pension-employer').innerHTML = '£' + data.employerPension.weekly
+    document.getElementById('results-monthly-pension-employer').innerHTML = '£' + data.employerPension.monthly
+    document.getElementById('results-annually-pension-employer').innerHTML = '£' + data.employerPension.annually
+
+    document.getElementById('results-weekly-nic-employer').innerHTML = '£' + data.employerNic.weekly
+    document.getElementById('results-monthly-nic-employer').innerHTML = '£' + data.employerNic.monthly
+    document.getElementById('results-annually-nic-employer').innerHTML = '£' + data.employerNic.annually
+
+    document.getElementById('results-weekly-total-employer').innerHTML = '£' + data.employerTotal.weekly
+    document.getElementById('results-monthly-total-employer').innerHTML = '£' + data.employerTotal.monthly
+    document.getElementById('results-annually-total-employer').innerHTML = '£' + data.employerTotal.annually
+
+    // Remove / disable classes on rows when not enabled
+    if(data.pension.annually == 0) {
+        document.getElementById('results-pension-row').classList.add('is-disabled')
+        document.getElementById('results-pension-row-employer').classList.add('is-disabled')
+    } else {
+        if(document.getElementById('results-pension-row').classList.contains('is-disabled')) {
+            document.getElementById('results-pension-row').classList.remove('is-disabled')
+            document.getElementById('results-pension-row-employer').classList.remove('is-disabled')
+        }
+    }
+    
+    if(data.studentloan.annually == 0) {
+        document.getElementById('results-studentloan-row').classList.add('is-disabled')
+    } else {
+        if(document.getElementById('results-studentloan-row').classList.contains('is-disabled')) {
+            document.getElementById('results-studentloan-row').classList.remove('is-disabled')
+        }
+    }
+
+}
+
+function calculateTakeHomeSalary() {
+
+    const MONTHS_IN_YEAR = 12;
+    const WEEKS_IN_YEAR = 52;
+    const PENSION_CONTRIBUTION_RATE = 0.05; // 5%
+    const EMPLOYER_PENSION_CONTRIBUTION_RATE = 0.03; // 3%
+
+    const formData = new FormData(salaryForm)
+    let grossIncome = parseInt(formData.get('income'))
+    const salaryType = formData.get('salary_type')
+    const payFrequency = formData.get('pay_frequency')
+    const taxCode = formData.get('tax_code')
+    const includePension = formData.get('include_pension')
+    const includeStudentLoan = formData.get('include_student_loan')
+    const studentLoanPlanType = formData.get('student_loan_type')
+    
+    switch (payFrequency) {
+        case 'weekly':
+            grossIncome = grossIncome * 52
+            break;
+        case 'monthly':
+            grossIncome = grossIncome * 12
+            break;
+        case 'annually':
+            grossIncome = grossIncome
+            break;
+    }
+
+    // Income tax calculation based on 2024 rates
+    const incomeTax = calculateIncomeTax(grossIncome, taxCode);
+
+    // National Insurance Contributions based on 2024 rates
+    const nics = calculateNICs(grossIncome);
+    const employerNics = calculateEmployerNICs(grossIncome);
+
+    // Calculate pension contributions (5% of gross income)
+    const pensionContributions = (includePension == 'yes' ? (grossIncome * PENSION_CONTRIBUTION_RATE) - grossIncome * 0.01 : 0);
+    const employerPensionContributions = (includePension == 'yes' ? grossIncome * EMPLOYER_PENSION_CONTRIBUTION_RATE : 0);
+
+    // Calculate student loan
+    const studentLoanAmount = (includeStudentLoan == 'yes' ? calculateStudentLoan(grossIncome, studentLoanPlanType) : 0)
+
+    // Calculate net income
+
+    let netIncome
+
+    if(salaryType == 'gross') {
+        netIncome = grossIncome - incomeTax - nics - pensionContributions - studentLoanAmount
+    }
+
+    if(salaryType == 'net') {
+        netIncome = grossIncome
+        grossIncome = grossIncome + incomeTax + nics + pensionContributions + studentLoanAmount
+    }
+    
+    const netEmployerTotal = grossIncome + employerNics + employerPensionContributions
+
+    // Calculate weekly, monthly, and annual for each value
+    const grossIncomeWeekly = grossIncome / WEEKS_IN_YEAR
+    const grossIncomeMonthly = grossIncome / MONTHS_IN_YEAR
+    const grossIncomeAnnually = grossIncome
+
+    const netIncomeWeekly = netIncome / WEEKS_IN_YEAR
+    const netIncomeMonthly = netIncome / MONTHS_IN_YEAR
+    const netIncomeAnnually = netIncome
+
+    const incomeTaxWeekly = incomeTax / WEEKS_IN_YEAR
+    const incomeTaxMonthly = incomeTax / MONTHS_IN_YEAR
+    const incomeTaxAnnually = incomeTax
+
+    const nicsWeekly = nics / WEEKS_IN_YEAR
+    const nicsMonthly = nics / MONTHS_IN_YEAR
+    const nicsAnnually = nics
+
+    const employerNicsWeekly = employerNics / WEEKS_IN_YEAR
+    const employerNicsMonthly = employerNics / MONTHS_IN_YEAR
+    const employerNicsAnnually = employerNics
+
+    const pensionContributionsWeekly = pensionContributions / WEEKS_IN_YEAR
+    const pensionContributionsMonthly = pensionContributions / MONTHS_IN_YEAR
+    const pensionContributionsAnnually = pensionContributions
+
+    const employerPensionContributionsWeekly = employerPensionContributions / WEEKS_IN_YEAR
+    const employerPensionContributionsMonthly = employerPensionContributions / MONTHS_IN_YEAR
+    const employerPensionContributionsAnnually = employerPensionContributions
+
+    const studentLoanAmountWeekly = studentLoanAmount / WEEKS_IN_YEAR
+    const studentLoanAmountMonthly = studentLoanAmount / MONTHS_IN_YEAR
+    const studentLoanAmountAnnually = studentLoanAmount
+
+    const netEmployerTotalWeekly = netEmployerTotal / WEEKS_IN_YEAR
+    const netEmployerTotalMonthly = netEmployerTotal / MONTHS_IN_YEAR
+    const netEmployerTotalAnnually = netEmployerTotal
+    
+    const data = {
+        pay: {
+            weekly: grossIncomeWeekly.toFixed(2),
+            monthly: grossIncomeMonthly.toFixed(2),
+            annually: grossIncomeAnnually.toFixed(2)
+        },
+        net: {
+            weekly: netIncomeWeekly.toFixed(2),
+            monthly: netIncomeMonthly.toFixed(2),
+            annually: netIncomeAnnually.toFixed(2)
+        },
+        tax: {
+            weekly: incomeTaxWeekly.toFixed(2),
+            monthly: incomeTaxMonthly.toFixed(2),
+            annually: incomeTaxAnnually.toFixed(2)
+        },
+        nic: {
+            weekly: nicsWeekly.toFixed(2),
+            monthly: nicsMonthly.toFixed(2),
+            annually: nicsAnnually.toFixed(2)
+        },
+        pension: {
+            weekly: pensionContributionsWeekly.toFixed(2),
+            monthly: pensionContributionsMonthly.toFixed(2),
+            annually: pensionContributionsAnnually.toFixed(2)
+        },
+        studentloan: {
+            weekly: studentLoanAmountWeekly.toFixed(2),
+            monthly: studentLoanAmountMonthly.toFixed(2),
+            annually: studentLoanAmountAnnually.toFixed(2)
+        },
+        employerPension: {
+            weekly: employerPensionContributionsWeekly.toFixed(2),
+            monthly: employerPensionContributionsMonthly.toFixed(2),
+            annually: employerPensionContributionsAnnually.toFixed(2)
+        },
+        employerNic: {
+            weekly: employerNicsWeekly.toFixed(2),
+            monthly: employerNicsMonthly.toFixed(2),
+            annually: employerNicsAnnually.toFixed(2)
+        },
+        employerTotal: {
+            weekly: netEmployerTotalWeekly.toFixed(2),
+            monthly: netEmployerTotalMonthly.toFixed(2),
+            annually: netEmployerTotalAnnually.toFixed(2)
+        },
+        taxCode: taxCode
+    }
+
+    return data;
+}
+
+
+// Helper function to calculate income tax based on 2024 rates
+function calculateStudentLoan(grossIncome, studentLoanPlan) {
+
+    let threashold = 22015
+    let amount = grossIncome
+    let rate = 0.09
+
+    switch (studentLoanPlan) {
+        case 'plan_1':
+            threashold = 22015
+            break
+        case 'plan_2':
+            threashold = 27295
+            break
+        case 'plan_4':
+            threashold = 27660
+            break
+        case 'plan_5':
+            threashold = 25000
+            break
+        case 'postgrad':
+            threashold = 21000
+            rate = 0.06
+            break
+    }
+
+    amount = (grossIncome - threashold) * rate
+
+    return amount;
+}
+
+// Helper function to calculate income tax based on 2024 rates
+function calculateIncomeTax(grossIncome, taxCode) {
+    let tax = 0;
+
+    taxCode = taxCode.replace(/[^0-9]/g, '');
+    taxCode = parseFloat(taxCode + '0');
+
+    if (grossIncome > 50271) {
+        tax += (grossIncome - 50271) * 0.4; // 40% higher rate
+        grossIncome = 50271;
+    }
+
+    if (grossIncome > taxCode) {
+        tax += (grossIncome - taxCode) * 0.2; // 20% basic rate
+    }
+
+    if(taxCode == 'br') {
+        tax = grossIncome * 0.2; // 20% basic rate
+    }
+
+
+    return tax;
+}
+
+// Helper function to calculate NICs based on 2024 rates
+function calculateNICs(grossIncome) {
+
+    let grossIncomeWeekly = grossIncome / 52
+
+    let nic = 0;
+
+    if (grossIncomeWeekly >= 0 && grossIncomeWeekly <= 242) {
+        nic = 0;
+    } else if (grossIncomeWeekly > 242 && grossIncomeWeekly <= 967) {
+        nic = (grossIncomeWeekly - 242) * 0.08;
+    } else if (grossIncomeWeekly > 967) {
+        nic = (967 - 242) * 0.08 + (grossIncomeWeekly - 967) * 0.02;
+    }
+
+    nic = nic * 52
+
+    return nic;
+}
+
+function calculateEmployerNICs(grossIncome) {
+
+    if (grossIncome > 9100) {
+        return (grossIncome - 9100) * 0.138; // 13.8% Employer NIC rate
+    }
+
+    return 0;
+}
+
+// When you click on the radios for knowing your tax code
+taxCodeRadios.forEach(function(radio) {
+    radio.addEventListener('change', (event) => {
+        let selectedTaxCode = event.target.value
+        switch (selectedTaxCode) {
+            case 'yes':
+                taxCodeInput.classList.remove('disabled')
+                taxCodeInput.value = ''
+                taxCodeSelect.style.display = 'none'
+                break
+            case 'no':
+                taxCodeInput.classList.add('disabled')
+                taxCodeInput.value = taxCodeSelect.value
+                taxCodeSelect.style.display = 'block'
+                break
+        }
+
+        checkInputs()
+    })
+})
+
+// When you change the tax code dropdown
+taxCodeSelect.addEventListener('change', (event) => {
+    taxCodeInput.value = event.target.value
+})
+
+// When you change the tax code dropdown
+studentLoanRadios.forEach(function(radio) {
+    radio.addEventListener('change', (event) => {
+        let include = event.target.value
+
+        switch (include) {
+            case 'yes':
+                studentLoanPlans.style.display = 'block'
+                break
+            case 'no':
+                studentLoanPlans.style.display = 'none'
+                break
+        }
+    })
+})
+
+incomeInput.addEventListener('input', checkInputs);
+taxCodeInput.addEventListener('input', checkInputs);
+frequencyInput.addEventListener('change', checkInputs);
+function checkInputs() {
+    if (incomeInput.value.trim() !== '' && taxCodeInput.value.trim() !== '' && frequencyInput.value.trim() !== '') {
+        submitButton.disabled = false
+        return
+    }
+    submitButton.disabled = true
+}
+</script>
